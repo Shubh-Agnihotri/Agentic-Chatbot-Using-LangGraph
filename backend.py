@@ -28,9 +28,10 @@ load_dotenv()
 
 llm = ChatGroq(model="openai/gpt-oss-120b")
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2",
-    model_kwargs={"device": "cuda"},   # use "cpu" if you don't want GPU
     encode_kwargs={"normalize_embeddings": True}
 )
 
